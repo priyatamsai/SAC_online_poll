@@ -98,7 +98,7 @@ require 'includes/common.php';
     
 <center>
 <div class="w3-container">
-    <br>
+  <br>
   <h2>Poll login</h2>
   <br>
   <button onclick="document.getElementById('id03').style.display='block'" class="w3-button w3-blue w3-round-large" style="font-size: 18px;">Login</button>

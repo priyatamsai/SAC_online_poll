@@ -59,99 +59,73 @@ float:right;}
                 </div>
             </div>
         </header>
-    <center>
+
+        <center>
         <div class="w3-cell-row " style="width: 85%; margin-top: 8%;">
-
-        <div class="w3-container w3-cell">
-            <center>
-          <div class="w3-card-4" style="width:90%;">
-
-        <header class="w3-container w3-blue">
-          <h1>Create Officer</h1>
-        </header>
-
-        <div class="w3-container">
-            <form class="w3-container" action="officer_add.php" method="POST">
-                <br>
-                <label style="color: black;"><b>Email Id</b></label>
-                <input class="w3-input w3-border w3-margin-bottom" type="text" placeholder="Emailid" name="email" required>
-                <label style="color: black;"><b>Password</b></label>
-                <input class="w3-input w3-border" type="password" placeholder="Enter Password" name="password" required>
-                <br>
-                <button class="w3-button w3-block w3-green w3-section w3-padding" type="submit">Submit</button>
-                
-            </form>
+            <div class="w3-container w3-cell">
+                <center>
+                <div class="w3-card-4" style="width:90%;">
+                    <header class="w3-container w3-blue">
+                    <h1>Create Officer</h1>
+                    </header>
+                    <div class="w3-container">
+                        <form class="w3-container" action="officer_add.php" method="POST">
+                            <br>
+                            <label style="color: black;"><b>Email Id</b></label>
+                            <input class="w3-input w3-border w3-margin-bottom" type="text" placeholder="Emailid" name="email" required>
+                            <label style="color: black;"><b>Password</b></label>
+                            <input class="w3-input w3-border" type="password" placeholder="Enter Password" name="password" required>
+                            <br>
+                            <button class="w3-button w3-block w3-green w3-section w3-padding" type="submit">Submit</button>
+                        </form>
+                    </div>
+                </div>
+                </center>
+            </div>
             
-        </div>
+            <div class="w3-container w3-cell">
+                <center>
+                <div class="w3-card-4" style="width:90%;">
+                    <header class="w3-container w3-blue">
+                    <h1>Create Booth</h1>
+                    </header>
+                    <div class="w3-container">
+                        <form class="w3-container" action="poll_add.php" method="POST">
+                            <br>
+                            <label style="color: black;"><b>Booth Id</b></label>
+                            <input class="w3-input w3-border w3-margin-bottom" type="text" placeholder="Enter Username" name="usrname" required>
+                            <label style="color: black;"><b>Password</b></label>
+                            <input class="w3-input w3-border" type="password" placeholder="Enter Password" name="password" required>
+                            <br>
+                            <button class="w3-button w3-block w3-green w3-section w3-padding" type="submit">Submit</button>
+                        </form>
+                    </div>
+                </div>
+                </center>
+            </div>
 
-        
+            <div class="w3-container w3-cell" >
+                <center>
+                <div class="w3-card-4" style="width:90%;">
+                    <header class="w3-container w3-blue">
+                    <h1>Truncate</h1>
+                    </header>
+                    <div class="w3-container">
+                        <br><br><br>
+                        <p>Resets all</p>
+                        <p>the details</p>
+                        <br><br><br>
+                    </div>
 
-        </div>
-            </center>
-        </div>
-            
-        <div class="w3-container w3-cell">
-            <center>
-          <div class="w3-card-4" style="width:90%;">
-
-        <header class="w3-container w3-blue">
-          <h1>Create Booth</h1>
-        </header>
-
-        <div class="w3-container">
-            <form class="w3-container" action="poll_add.php" method="POST">
-                <br>
-                <label style="color: black;"><b>Booth Id</b></label>
-                <input class="w3-input w3-border w3-margin-bottom" type="text" placeholder="Enter Username" name="usrname" required>
-                <label style="color: black;"><b>Password</b></label>
-                <input class="w3-input w3-border" type="password" placeholder="Enter Password" name="password" required>
-                <br>
-                <button class="w3-button w3-block w3-green w3-section w3-padding" type="submit">Submit</button>
-            </form>
-        </div>
-
-        
-
-        </div>
-            </center>
-        </div>
-
-        <div class="w3-container w3-cell" >
-            <center>
-          <div class="w3-card-4" style="width:90%;">
-
-        <header class="w3-container w3-blue">
-          <h1>Truncate</h1>
-        </header>
-        <div class="w3-container">
-            <br>
-            <br>
-            <br>
-            <p>Resets all</p>
-            <p>the details</p>
-            <br>
-            <br>
-            <br>
-            <br>
-          </div>
-
-          <footer class="w3-container w3-blue">
-              
-
-  
-              <a href="truncate.php" style="color: white; font-size: 20px;">Reset</a>
-          </footer>
-        <div class="w3-container">
-            
-        </div>
-
-        
-
-        </div>
-            </center>
-        </div>
-
-      </div>
-    </center>
+                    <footer class="w3-container w3-blue">
+                        <a href="truncate.php" style="color: white; font-size: 20px;">Reset</a>
+                    </footer>
+                    <div class="w3-container">
+                    </div>
+                </div>
+                </center>
+            </div>
+        </div>    
+        </center>
     </body>
 </html>

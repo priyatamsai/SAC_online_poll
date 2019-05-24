@@ -41,7 +41,7 @@ font-size:20px;
 font-weight:300;
 float:right;}
     </style>
-        <title>Contestant Page</title>
+        <title>Officer Page</title>
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
         <meta charset="utf-8">
@@ -72,41 +72,37 @@ float:right;}
         $r6 = mysqli_query($con, "SELECT * FROM post");
         ?>
         <div class="w3-bar">
-            <button onclick="document.getElementById('id01').style.display='block'" class="w3-bar-item w3-button w3-grey w3-hover-green" style="font-size:20px; width:33.3%;">Add Contestant</button>
-            <button onclick="document.getElementById('id02').style.display='block'" class="w3-bar-item w3-button w3-grey w3-hover-green" style="font-size:20px; width:33.3%;">Add Post</button>
-            <button onclick="document.getElementById('id03').style.display='block'" class="w3-bar-item w3-button w3-grey w3-hover-green" style="font-size:20px; width:33.3%;">Results</button>
+            <button onclick="document.getElementById('contestant_add').style.display='block'" class="w3-bar-item w3-button w3-grey w3-hover-green" style="font-size:20px; width:33.3%;">Add Contestant</button>
+            <button onclick="document.getElementById('post_add').style.display='block'" class="w3-bar-item w3-button w3-grey w3-hover-green" style="font-size:20px; width:33.3%;">Add Post</button>
+            <button onclick="document.getElementById('results_div').style.display='block'" class="w3-bar-item w3-button w3-grey w3-hover-green" style="font-size:20px; width:33.3%;">Results</button>
         </div>
         <div>
-           
                 <div class="w3-container">
-                
 
-                <div id="id03" class="w3-modal">
+                <div id="results_div" class="w3-modal">
                   <div class="w3-modal-content w3-card-4 w3-animate-zoom" style="max-width:1000px">
-
                     <div class="w3-center">
-                      <span onclick="document.getElementById('id03').style.display='none'" class="w3-button w3-xlarge w3-hover-red w3-display-topright" title="Close Modal">&times;</span>
-
+                      <span onclick="document.getElementById('results_div').style.display='none'" class="w3-button w3-xlarge w3-hover-red w3-display-topright" title="Close Modal">&times;</span>
                     </div>
-
                       
                       <div class="w3-section" style="height:70%; overflow-y: scroll;">
-                          <div class="w3-sidebar w3-bar-block w3-light-grey w3-card" style="width:130px; height: 61.5%;">
-                              <div class="w3-panel w3-blue" style="padding:2px;">
-  <h5 class="w3-bar-item" >Post Name</h5>
-</div> 
-                             
-  <?php
-                            while($row5 = mysqli_fetch_array($r5)){
-                            ?>
-  <button class="w3-bar-item w3-button tablink" onclick="openCity(event, '<?php echo $row5['name'];?>')"><?php echo $row5['name'];?></button>
+                        <div class="w3-sidebar w3-bar-block w3-light-grey w3-card" style="width:130px; height: 61.5%;">
+                          <div class="w3-panel w3-blue" style="padding:2px;">
+                            <h5 class="w3-bar-item" >Post Name</h5>
+                          </div> 
 <?php
-                            }?>
-</div>
+                          while($row5 = mysqli_fetch_array($r5)){
+?>
+                            <button class="w3-bar-item w3-button tablink" onclick="openCity(event, '<?php echo $row5['name'];?>')">
+                              <?php echo $row5['name'];?>
+                            </button>
+<?php
+                          }
+?>
+                        </div>
 
 <div style="margin-left:130px">
-  
- <?php
+  <?php
                             while($row5 = mysqli_fetch_array($r6)){
                             ?>
     <div id="<?php echo $row5['name'];?>" class="w3-container city" style="display:none"><br>
@@ -227,7 +223,7 @@ function openCity(evt, cityName) {
 
                     <div class="w3-container w3-border-top w3-padding-16 w3-light-grey">
                         
-                      <button onclick="document.getElementById('id03').style.display='none'" type="button" class="w3-button w3-red">Cancel</button>
+                      <button onclick="document.getElementById('results_div').style.display='none'" type="button" class="w3-button w3-red">Cancel</button>
                       
                     </div>
 
@@ -239,111 +235,96 @@ function openCity(evt, cityName) {
         </div>
         
         <div>
-           
-                <div class="w3-container">
-                
 
-                <div id="id01" class="w3-modal">
-                  <div class="w3-modal-content w3-card-4 w3-animate-zoom" style="max-width:500px">
+          <div class="w3-container">
+            <div id="contestant_add" class="w3-modal">
+              <div class="w3-modal-content w3-card-4 w3-animate-zoom" style="max-width:500px">
+                <div class="w3-center"><br>
+                  <span onclick="document.getElementById('contestant_add').style.display='none'" class="w3-button w3-xlarge w3-hover-red w3-display-topright" title="Close Modal">&times;</span>
+                </div>
 
-                    <div class="w3-center"><br>
-                      <span onclick="document.getElementById('id01').style.display='none'" class="w3-button w3-xlarge w3-hover-red w3-display-topright" title="Close Modal">&times;</span>
+                <form class="w3-container" action="contestant_add.php" method="POST">
+                  <div class="w3-section">
+                    <label><b>Contestant Name</b></label>
+                    <input class="w3-input w3-border w3-margin-bottom" type="text" placeholder="Enter Contestant Name" name="name" required>
 
-                    </div>
+                    <label><b>Electoral Number</b></label>
+                    <input class="w3-input w3-border" type="text" placeholder="Enter Electoral Number" name="id" required>
+                    <br>
+                    <label><b>Post</b></label>
+                    <select class="w3-select w3-border" name="option">
+                        <option value="" disabled selected>Select Post</option>
+                        <?php
+                        $posts=mysqli_query($con, "SELECT * FROM post");
+                        while($row1 = mysqli_fetch_array($posts)){
+                        ?>
+                        <option value="<?php echo $row1['name'];?>" ><?php echo $row1['name'];?></option>
+                        <?php
+                        }?>
+                    </select>
+                    <br>
+                    <br>
+                    <label><b>Year</b></label>
+                    <input class="w3-input w3-border w3-margin-bottom" type="text" placeholder="Enter Year" name="year" required>
 
-                      <form class="w3-container" action="contestant_add.php" method="POST">
-                      <div class="w3-section">
-                        <label><b>Contestant Name</b></label>
-                        <input class="w3-input w3-border w3-margin-bottom" type="text" placeholder="Enter Contestant Name" name="name" required>
-
-                        <label><b>Electoral Number</b></label>
-                        <input class="w3-input w3-border" type="text" placeholder="Enter Electoral Number" name="id" required>
-                        <br>
-                        <label><b>Post</b></label>
-                        <select class="w3-select w3-border" name="option">
-                            <option value="" disabled selected>Select Post</option>
-                            <?php
-                            $result1=mysqli_query($con, "SELECT * FROM post");
-                            while($row1 = mysqli_fetch_array($result1)){
-                            ?>
-                            <option value="<?php echo $row1['name'];?>" ><?php echo $row1['name'];?></option>
-                            <?php
-                            }?>
-                          </select>
-                          <br>
-                          <br>
-                        <label><b>Year</b></label>
-                        <input class="w3-input w3-border w3-margin-bottom" type="text" placeholder="Enter Year" name="year" required>
-
-                        <label><b>Branch</b></label>
-                        <input class="w3-input w3-border" type="text" placeholder="Enter Branch" name="branch" required>
-                        <br>
-                        <label><b>Date of Nomination</b></label>
-                        <input class="w3-input w3-border" type="date"  name="date"  size="15" maxlength="10">
-                        <br>
-                        <label><b>CGPA</b></label>
-                        <input class="w3-input w3-border" type="text" placeholder="Enter CGPA" name="cgpa" required>
-                        <br>
-                        <label><b>Phone Number</b></label>
-                        <input class="w3-input w3-border" type="text" placeholder="Enter Contact Number" name="ph_no" required>
-                        <br>
-                        <button class="w3-button w3-block w3-green w3-section w3-padding" type="submit">Add Contestant</button>
-
-                      </div>
-                    </form>
-
-                    <div class="w3-container w3-border-top w3-padding-16 w3-light-grey">
-                      <button onclick="document.getElementById('id01').style.display='none'" type="button" class="w3-button w3-red">Cancel</button>
-
-                    </div>
+                    <label><b>Branch</b></label>
+                    <input class="w3-input w3-border" type="text" placeholder="Enter Branch" name="branch" required>
+                    <br>
+                    <label><b>Date of Nomination</b></label>
+                    <input class="w3-input w3-border" type="date"  name="date"  size="15" maxlength="10">
+                    <br>
+                    <label><b>CGPA</b></label>
+                    <input class="w3-input w3-border" type="text" placeholder="Enter CGPA" name="cgpa" required>
+                    <br>
+                    <label><b>Phone Number</b></label>
+                    <input class="w3-input w3-border" type="text" placeholder="Enter Contact Number" name="ph_no" required>
+                    <br>
+                    <button class="w3-button w3-block w3-green w3-section w3-padding" type="submit">Add Contestant</button>
 
                   </div>
+                </form>
+
+                <div class="w3-container w3-border-top w3-padding-16 w3-light-grey">
+                  <button onclick="document.getElementById('contestant_add').style.display='none'" type="button" class="w3-button w3-red">Cancel</button>
                 </div>
+
               </div>
-            
-   
+            </div>
+          </div>
+
         </div>
+
+
         <?php
         $result3 = mysqli_query($con, "SELECT * FROM post");
         ?>
-        
-    
         <div>
-           
-                <div class="w3-container">
-                
+          <div class="w3-container">
+          <div id="post_add" class="w3-modal">
+            <div class="w3-modal-content w3-card-4 w3-animate-zoom" style="max-width:500px">
 
-                <div id="id02" class="w3-modal">
-                  <div class="w3-modal-content w3-card-4 w3-animate-zoom" style="max-width:500px">
-
-                    <div class="w3-center"><br>
-                      <span onclick="document.getElementById('id02').style.display='none'" class="w3-button w3-xlarge w3-hover-red w3-display-topright" title="Close Modal">&times;</span>
-
-                    </div>
-
-                      <form class="w3-container" action="post_add.php" method="POST">
-                      <div class="w3-section">
-                        <label><b>Post Name</b></label>
-                        <input class="w3-input w3-border w3-margin-bottom" type="text" placeholder="Enter Post Name" name="name" required>
-
-                        
-                        <br>
-                        <button class="w3-button w3-block w3-green w3-section w3-padding" type="submit">Add Post</button>
-
-                      </div>
-                    </form>
-
-                    <div class="w3-container w3-border-top w3-padding-16 w3-light-grey">
-                      <button onclick="document.getElementById('id02').style.display='none'" type="button" class="w3-button w3-red">Cancel</button>
-
-                    </div>
-
-                  </div>
-                </div>
+              <div class="w3-center"><br>
+                <span onclick="document.getElementById('post_add').style.display='none'" class="w3-button w3-xlarge w3-hover-red w3-display-topright" title="Close Modal">&times;</span>
               </div>
-            
-   
+
+              <form class="w3-container" action="post_add.php" method="POST">
+              <div class="w3-section">
+                <label><b>Post Name</b></label>
+                <input class="w3-input w3-border w3-margin-bottom" type="text" placeholder="Enter Post Name" name="name" required>
+                <br>
+                <button class="w3-button w3-block w3-green w3-section w3-padding" type="submit">Add Post</button>
+              </div>
+              </form>
+
+              <div class="w3-container w3-border-top w3-padding-16 w3-light-grey">
+                <button onclick="document.getElementById('post_add').style.display='none'" type="button" class="w3-button w3-red">Cancel</button>
+              </div>
+              
+            </div>
+          </div>
+          </div>
         </div>
+
         <center>
         <div style="width:85%; padding-top: 30px;">
         <table class="w3-table-all w3-hoverable">
